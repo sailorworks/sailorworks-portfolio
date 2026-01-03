@@ -1,45 +1,50 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Video, Gamepad2, Brain, TrendingUp, Trophy, Youtube } from "lucide-react";
 
 const tiles = [
   {
-    title: "The Publisher Agent",
+    title: "Video Content Agent",
     subtitle: "Automating the boring stuff with Composio.",
     caption: "AI Automation Pipeline",
-    image: "/bento_publisher_agent.png",
+    href: "https://github.com/sailorworks/video-content-agent",
+    icon: Video,
   },
   {
-    title: "Spatial Logic",
+    title: "AR Mastermind Game",
     subtitle: "Apple Swift Student Challenge Winner.",
     caption: "Apple Swift Winner",
-    image: "/bento_spatial_logic.png",
+    href: "https://github.com/sailorworks/swift25",
+    icon: Gamepad2,
   },
   {
-    title: "External Memory",
-    subtitle: "Full-stack GenAI architecture.",
+    title: "Learn everything using AI",
+    subtitle: "Turns complex list of words into a simple sentence.",
     caption: "MnemonicsAI",
-    image: "/bento_mnemonics_ai.png",
+    href: "https://mnemonicsai.com/",
+    icon: Brain,
   },
   {
     title: "10k Eyes",
-    subtitle: "Viral growth engineering.",
+    subtitle: "Vid Editing, Caraousel posts Everything Marketing.",
     caption: "Founders Office",
-    image: "/bento_founders_office.png",
+    href: "#",
+    icon: TrendingUp,
   },
    {
-    title: "Neural Search",
-    subtitle: "Semantic retrieval systems.",
-    caption: "RAG Infrastructure",
-    image: null, 
+    title: "Aptos Hackathon winner",
+    subtitle: "Sold voice on chain",
+    caption: "consumer apps",
+    href: "https://github.com/rajarshidattapy/voice_vault",
+    icon: Trophy, 
   },
   {
-    title: "Agent Orchestration",
-    subtitle: "Multi-agent systems coordination.",
-    caption: "Swarm Intelligence",
-    image: null,
+    title: "AI Avatar based video tutorial",
+    subtitle: "Learn concepts easily",
+    caption: "Youtube video",
+    href: "https://www.youtube.com/watch?v=Vw0XRuZwl6A",
+    icon: Youtube,
   }
 ];
 
@@ -64,27 +69,19 @@ export default function BentoGrid() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-l border-neutral-900">
                 {tiles.map((tile, index) => (
-                    <motion.div
+                    <motion.a
                         key={index}
+                        href={tile.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: index * 0.1 }}
                         className="group relative flex flex-col justify-between border-b border-r border-neutral-900 p-12 hover:bg-neutral-900/30 transition-colors duration-500 min-h-[400px]"
                     >
-                        {/* Top: Icon/Image */}
-                        <div className="mb-8 relative w-12 h-12 overflow-hidden rounded-lg bg-neutral-900/50">
-                             {tile.image ? (
-                                <Image
-                                    src={tile.image}
-                                    alt={tile.title}
-                                    fill
-                                    className="object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500"
-                                />
-                             ) : (
-                                <div className="w-full h-full flex items-center justify-center text-neutral-700">
-                                   <ArrowUpRight className="w-5 h-5" />
-                                </div>
-                             )}
+                        {/* Top: Icon */}
+                        <div className="mb-8 relative w-12 h-12 flex items-center justify-center rounded-lg bg-neutral-900/50 text-neutral-400 group-hover:text-white transition-colors duration-500">
+                             <tile.icon className="w-6 h-6" />
                         </div>
 
                         {/* Middle/Bottom: Content */}
@@ -107,7 +104,7 @@ export default function BentoGrid() {
                         <div className="absolute top-8 right-8 text-neutral-800 group-hover:text-white/20 transition-colors">
                             <ArrowUpRight className="w-6 h-6" />
                         </div>
-                    </motion.div>
+                    </motion.a>
                 ))}
             </div>
         </div>
